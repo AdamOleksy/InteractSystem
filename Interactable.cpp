@@ -2,6 +2,7 @@
 
 
 #include "Interactable.h"
+#include "InteractionComponent.h"
 #include "GameFramework/Actor.h"
 
 // Sets default values for this component's properties
@@ -51,11 +52,32 @@ void UInteractable::OnBeginOverlap
 	)
 	{
 		TryToAddActorToList(OtherActor);
-		UE_LOG(LogTemp, Error, TEXT("%i"), OverlapingActorsList.Num()) ;
+		UE_LOG(LogTemp, Error, TEXT("There are %i actors on list"), OverlapingActorsList.Num());
 	}
 
 
 void UInteractable::TryToAddActorToList(AActor* OverlapingActor)
 {
-	OverlapingActorsList.Add(OverlapingActor);
+	UInteractionComponent* interactable = OverlapingActor->FindComponentByClass<UInteractionComponent>();
+	if(interactable)
+	{
+		//To check if this is first actor to be added
+		if(OverlapingActorsList.Num() == 0)
+		{
+			OverlapingActorsList.Add(OverlapingActor);
+			return;
+		}
+
+		//To check if it is on list
+		for(AActor* ActorInList : OverlapingActorsList)
+		{
+			if(ActorInList == OverlapingActor)
+			{
+				return;
+			}
+		}
+
+		OverlapingActorsList.Add(OverlapingActor);
+	}
+	
 }

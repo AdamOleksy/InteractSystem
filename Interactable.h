@@ -33,6 +33,8 @@ class FPPINTERACT_API UInteractable : public UActorComponent
 
 	void TryToAddActorToList(AActor*);
 
+	bool CanInteract();
+
 public:	
 	// Sets default values for this component's properties
 	UInteractable();
