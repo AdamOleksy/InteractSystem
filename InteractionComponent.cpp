@@ -23,7 +23,6 @@ void UInteractionComponent::BeginPlay()
 	
 }
 
-
 // Called every frame
 void UInteractionComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
@@ -52,7 +51,6 @@ void UInteractionComponent::SortList()
             B.GetPriorityNumber();
     });
 	InteractWithComponent();
-
 }
 
 void UInteractionComponent::InteractWithComponent()
@@ -69,13 +67,3 @@ void UInteractionComponent::InteractWithComponent()
 		}
 	}
 }
-
-
-// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Is actor can interact?: %s"), 
-// 								CanInteract(OtherActor) ? TEXT("True") : TEXT("False")));
-	// //Debug
-	// for(auto inter : InteractableComponentsList)
-	// {
-	// 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Is actor can interact?: %i"), 
- 	// 							inter->GetPriorityNumber() ));
-	// }
